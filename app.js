@@ -47,7 +47,7 @@ const game = {
                 if (indexFlip === 2) {
                     if (images[i].src === oldImage.src && i !== oldImage.index) {
                         that.finishCard++
-                            if (that.finishCard === 1) {
+                            if (that.finishCard === 12) {
                                 that.play()
                             }
                         setTimeout(function() {
