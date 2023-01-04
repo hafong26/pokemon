@@ -1,0 +1,139 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+body {
+    overflow: hidden;
+    background-image: url('https://cdn.pixabay.com/photo/2016/08/27/11/59/pokemon-1624022__340.jpg');
+    /* background-image: url('https://cdn.pixabay.com/photo/2016/08/14/14/58/pokemon-1593048__340.jpg') */
+}
+
+.game {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.root {
+    --margin: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(var(--margin) * -1);
+}
+
+.card {
+    position: relative;
+    width: calc((100% / 6) - calc(var(--margin) * 2));
+    margin: 0 var(--margin);
+    margin-bottom: 10px;
+}
+
+@media (max-width:800px) {
+    .card {
+        width: calc((100% / 4) - calc(var(--margin) * 2));
+    }
+    .root.ratio-3x4 .image-front img,
+    .root.ratio-3x4 .image-backside img {
+        height: 120px !important;
+    }
+}
+
+.image-item {
+    backface-visibility: hidden;
+    transition: .5s;
+    border: 2px solid yellow;
+}
+
+.image-front {
+    position: absolute;
+    left: 0;
+    top: 0;
+    filter: invert(100%);
+}
+
+.root.ratio-3x4 .image-front img,
+.root.ratio-3x4 .image-backside img {
+    height: 200px;
+}
+
+.card .image-backside {
+    transform: rotateY(180deg);
+}
+
+.card.active .image-front {
+    transform: rotateY(-180deg);
+}
+
+.card.active .image-backside {
+    transform: rotateY(0deg);
+}
+
+
+/* Lock: active when 2 card same */
+
+.card:active {
+    cursor: pointer;
+}
+
+.card.lock .image-item {
+    box-shadow: 0 0 10px 5px lime;
+}
+
+.card.lock .image-front {
+    transform: rotateY(-180deg) !important;
+}
+
+.card.lock .image-backside {
+    transform: rotateY(0deg) !important;
+}
+
+
+/* Menu */
+
+.menu {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Rubik Bubbles', cursive;
+}
+
+.menu>div {
+    margin-bottom: 35px;
+    text-align: center;
+    font-size: 50px;
+    padding: .5em;
+    position: relative;
+    border: medium solid #fff;
+    color: #fff;
+    transition: .5s;
+}
+
+.menu>div:hover {
+    cursor: pointer;
+    background: #fff;
+    color: #000;
+}
+
+@media (max-width:800px) {
+    .menu>div {
+        font-size: 30px;
+    }
+}
