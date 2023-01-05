@@ -2,19 +2,18 @@ const game = {
     firstTime: true,
     finishCard: 0,
     render: function() {
-        this.finishCard = 0
+
+        this.finishCard = 0;
         let indexTheme = Math.floor(Math.random() * data.length)
 
         const root = document.querySelector('.root')
         root.innerHTML = ''
 
         const ranNums = this.ranNums(1, 24)
-        if (data[indexTheme].ratio)
-            root.classList.add('ratio-3x4')
         for (let i = 0; i < 24; i++) {
             let src = ranNums[i] % 12 ? ranNums[i] % 12 : 12;
             root.innerHTML += `
-<div class="card">
+            <div class="card">
 <div class="image-item image-backside">
 <img src="./images/${data[indexTheme].name}/a (${src}).jpg" alt="">
 </div>
@@ -52,7 +51,7 @@ const game = {
                 if (indexFlip === 2) {
                     if (images[i].src === oldImage.src && i !== oldImage.index) {
                         that.finishCard++
-                            if (that.finishCard === 2) {
+                            if (that.finishCard === 12) {
                                 that.play()
                             }
                         setTimeout(function() {
@@ -100,7 +99,7 @@ const game = {
         menu.remove()
     },
     music: function() {
-        const audio = new Audio('./MAAZ  CloudStar K391 Summertime Remix.mp3')
+        const audio = new Audio('./Rnbstylerz Like Wooh Wooh Remix.mp3')
         audio.loop = true
         audio.play()
     },
@@ -114,5 +113,3 @@ const game = {
         this.handle();
     }
 }
-const imgFront = document.querySelector('.image-front img')
-const imgBackside = document.querySelector('.image-backside img')
