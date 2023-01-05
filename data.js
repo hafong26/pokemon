@@ -15,7 +15,7 @@ const data = [{
         ratio: true,
         unlock: false
     }, {
-        name: 'ice__no',
+        name: 'ice',
         id: 3,
         ratio: false,
         unlock: false
