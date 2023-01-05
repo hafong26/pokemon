@@ -1,23 +1,28 @@
 const game = {
-    indexTheme: Math.floor(Math.random() * data.length),
+    firstTime: true,
     finishCard: 0,
     render: function() {
+        this.finishCard = 0
+        let indexTheme = Math.floor(Math.random() * data.length)
+
         const root = document.querySelector('.root')
+        root.innerHTML = ''
+
         const ranNums = this.ranNums(1, 24)
-        if (data[this.indexTheme].ratio)
+        if (data[indexTheme].ratio)
             root.classList.add('ratio-3x4')
         for (let i = 0; i < 24; i++) {
             let src = ranNums[i] % 12 ? ranNums[i] % 12 : 12;
             root.innerHTML += `
-                <div class="card">
-                <div class="image-item image-backside">
-                <img src="./images/${data[this.indexTheme].name}/a (${src}).jpg" alt="">
-                </div>
-                <div class="image-item image-front">
-                <img src="./images/question-mark.jpg" alt="">
-                </div>
-                </div>
-                `
+<div class="card">
+<div class="image-item image-backside">
+<img src="./images/${data[indexTheme].name}/a (${src}).jpg" alt="">
+</div>
+<div class="image-item image-front">
+<img src="./images/question-mark.jpg" alt="">
+</div>
+</div>
+`
         }
     },
     handle: function() {
@@ -47,7 +52,7 @@ const game = {
                 if (indexFlip === 2) {
                     if (images[i].src === oldImage.src && i !== oldImage.index) {
                         that.finishCard++
-                            if (that.finishCard === 12) {
+                            if (that.finishCard === 2) {
                                 that.play()
                             }
                         setTimeout(function() {
@@ -92,19 +97,22 @@ const game = {
     },
     removeMenu: function() {
         const menu = document.querySelector('.menu')
-        if (menu) {
-            menu.remove()
-        }
+        menu.remove()
     },
     music: function() {
-        const audio = document.querySelector('audio')
+        const audio = new Audio('./MAAZ  CloudStar K391 Summertime Remix.mp3')
+        audio.loop = true
         audio.play()
-
     },
     play: function() {
-        this.removeMenu()
-        this.music()
+        if (this.firstTime) {
+            this.firstTime = false;
+            this.removeMenu()
+            this.music()
+        }
         this.render();
-        this.handle()
+        this.handle();
     }
 }
+const imgFront = document.querySelector('.image-front img')
+const imgBackside = document.querySelector('.image-backside img')
