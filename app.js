@@ -18,7 +18,7 @@ const game = {
 <img src="./images/${data[indexTheme].name}/a (${src}).jpg" alt="">
 </div>
 <div class="image-item image-front">
-<img src="./images/question-mark.jpg" alt="">
+<img src="https://i.pinimg.com/564x/d4/45/21/d44521742cfb9198d8bbc7f0ecad6b0c.jpg" alt="">
 </div>
 </div>
 `
